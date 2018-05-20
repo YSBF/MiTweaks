@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=osu!
+Comment=Rhythm is just a click away
+Type=Application
+MimeType=application/x-wine-extension-osz;application/x-wine-extension-osk
+Exec=/home/batoshu/MiTweaks/osu/osu.sh %F
+Icon=/home/batoshu/MiTweaks/osu/osulogo.png
+StartupWMClass=osu!.exe
+Categories=Game;

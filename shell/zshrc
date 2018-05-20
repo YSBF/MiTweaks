@@ -1,0 +1,70 @@
+#
+# File:		.zshrc
+# Version:	1.0.1
+# Author:	Bartosz "Batoshu" Staniek <batoshu@pm.me>
+#
+
+#
+# Autocomplete plugin
+#
+autoload -Uz compinit
+compinit
+setopt COMPLETE_ALIASES
+zstyle ':completion:*' menu select
+
+#
+# Variables
+#
+export BROWSER="google-chrome"
+export EDITOR="vim"
+
+#
+# Custom prompt (Batoshu's prompt style <3)
+#
+if [[ $EUID -ne 0 ]]; then
+	PS_USERNAME='%F{yellow}%n%f'
+	PS_CHAR='%F{white}$%f'
+else
+	PS_USERNAME='%F{red}%n%f'
+	PS_CHAR='%F{white}#%f'
+fi
+PS_HOSTNAME='%F{cyan}%m%f'
+PS_PATH='%F{white}%~%f'
+
+PROMPT="%B$PS_USERNAME@$PS_HOSTNAME:$PS_PATH%b
+$PS_CHAR "
+RPROMPT="%(?..%F{red}%B-%?-%b%f)"
+
+#
+# Better-looking "command not found" error
+#
+command_not_found_handler() {
+	print -P "%F{red}%B[ZSH]%b%f Command '%B$1%b' not found."
+	exit 127
+}
+
+#
+# Some aliases
+#
+alias reload-zshrc='source ~/.zshrc'
+
+if [[ $EUID != 0 ]]; then
+	alias pacman='sudo pacman'		# Because I always forget about sudo xD
+fi
+
+#
+# More colors (From arch wiki)
+#
+alias ls='ls --color=auto'
+alias diff='diff --color=auto'
+alias grep='grep --color=auto'
+export LESS=-R
+export LESS_TERMCAP_mb=$'\E[1;31m'     # begin bold
+export LESS_TERMCAP_md=$'\E[1;36m'     # begin blink
+export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
+export LESS_TERMCAP_so=$'\E[01;44;33m' # begin reverse video
+export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
+export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
+export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
+export LESSOPEN="| /usr/bin/source-highlight-esc.sh %s"
+export LESS='-R '
