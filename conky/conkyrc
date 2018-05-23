@@ -60,9 +60,9 @@ Signal:	${wireless_link_qual wlp2s0}%
 Bitrate:	${wireless_bitrate wlp2s0}
 Local IP:	${addr wlp2s0}
 Download:	${downspeedf wlp2s0} KiB/s
-${downspeedgraph wlp2s0 30,210 ffffff ffffff 2000 -t -l}
+${downspeedgraph wlp2s0 30,210 ffffff ffffff 2000 -t}
 Upload:	${upspeedf wlp2s0} KiB/s
-${upspeedgraph wlp2s0 30,210 ffffff ffffff 500 -t -l}
+${upspeedgraph wlp2s0 30,210 ffffff ffffff 500 -t}
 
 # Memory
 
@@ -84,9 +84,9 @@ ${goto 1500}Used:	${fs_used /boot} / ${fs_size /boot}
 ${goto 1500}Free:	${fs_free /boot}
 
 ${goto 1500}Disk read:	${diskio_read /dev/nvme0n1}
-${goto 1500}${diskiograph_read /dev/nvme0n1 30,210 ffffff ffffff 25000000 -l -t}
+${goto 1500}${diskiograph_read /dev/nvme0n1 30,210 ffffff ffffff 100000 -t}
 ${goto 1500}Disk write:	${diskio_write /dev/nvme0n1}
-${goto 1500}${diskiograph_write /dev/nvme0n1 30,210 ffffff ffffff 10000000 -l -t}
+${goto 1500}${diskiograph_write /dev/nvme0n1 30,210 ffffff ffffff 50000 -t}
 
 
 ${goto 1500}Kernel:	${kernel}
