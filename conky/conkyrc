@@ -1,0 +1,101 @@
+# File: .conkyrc | Version: 1.0.0 | Author: Bartosz "Batoshu" Staniek <batoshu@pm.me> #
+conky.config = {
+	use_xft = true,
+	update_interval = 1,
+	total_run_times = 0,
+	
+	background = true,
+	
+	own_window = true,
+	own_window_type = 'desktop',
+	own_window_transparent = true,
+	own_window_colour = '000000',
+	own_window_argb_visual = true,
+	own_window_argb_value = 0,
+
+	double_buffer = true,
+
+	minimum_width = 1750,
+	minimum_height = 1000,
+
+	draw_shades = false,
+	draw_outline = false,
+	draw_borders = false,
+	draw_graph_borders = false,
+
+	default_color = 'FFFFFF',
+	default_shade_color = '000000',
+	default_outline_color = 'FF0000',
+
+	alignment = 'top_middle',
+	gap_x = 0,
+	gap_y = 50,
+	
+	font = 'DejaVu Sans Mono:style=medium:size=10'
+}
+
+conky.text = [[
+# Clock #
+${alignc}${font Hack Regular:style=medium:size=60}${time %H:%M}${font}
+${voffset 20}${alignc}${font normal:size=12}${time %A %d %B}${font}
+# Left column #
+# CPU #
+Intel(R) Core(TM) i7-8550U
+Temperature:	${acpitemp}°C
+Load:		${cpu cpu0}%
+${font normal:size=9}${cpugraph cpu0 40,210}
+${cpu cpu1}% ${freq_g 1} GHz${goto 115}${cpu cpu2}% ${freq_g 2} GHz
+${cpugraph cpu1 30,100}${offset 10}${cpugraph cpu2 30,100}
+${cpu cpu3}% ${freq_g 3} GHz${goto 115}${cpu cpu4}% ${freq_g 4} GHz
+${cpugraph cpu3 30,100}${offset 10}${cpugraph cpu4 30,100}
+${cpu cpu5}% ${freq_g 5} GHz${goto 115}${cpu cpu6}% ${freq_g 6} GHz
+${cpugraph cpu5 30,100}${offset 10}${cpugraph cpu6 30,100}
+${cpu cpu7}% ${freq_g 7} GHz${goto 115}${cpu cpu8}% ${freq_g 8} GHz
+${cpugraph cpu7 30,100}${offset 10}${cpugraph cpu8 30,100}${font}
+
+# Network #
+
+Network:	${wireless_essid wlp2s0}
+Signal:	${wireless_link_qual wlp2s0}%
+Bitrate:	${wireless_bitrate wlp2s0}
+Local IP:	${addr wlp2s0}
+Download:	${downspeedf wlp2s0} KiB/s
+${downspeedgraph wlp2s0 30,210 ffffff ffffff 2000 -t -l}
+Upload:	${upspeedf wlp2s0} KiB/s
+${upspeedgraph wlp2s0 30,210 ffffff ffffff 500 -t -l}
+
+# Memory
+
+Memory:	${mem} / ${memmax}
+${voffset 2}${membar 13,210} ${memperc}%
+
+SWAP:		${swap} / ${swapmax}
+${voffset 2}${swapbar 13,210} ${swapperc}%
+# Right column #
+${voffset -711} 
+${goto 1500}root
+${voffset 2}${goto 1500}${fs_bar 13,210} ${fs_used_perc}%
+${goto 1500}Used:	${fs_used /} / ${fs_size /}
+${goto 1500}Free:	${fs_free /}
+
+${goto 1500}/boot
+${voffset 2}${goto 1500}${fs_bar 13,210 /boot} ${fs_used_perc /boot}%
+${goto 1500}Used:	${fs_used /boot} / ${fs_size /boot}
+${goto 1500}Free:	${fs_free /boot}
+
+${goto 1500}Disk read:	${diskio_read /dev/nvme0n1}
+${goto 1500}${diskiograph_read /dev/nvme0n1 30,210 ffffff ffffff 25000000 -l -t}
+${goto 1500}Disk write:	${diskio_write /dev/nvme0n1}
+${goto 1500}${diskiograph_write /dev/nvme0n1 30,210 ffffff ffffff 10000000 -l -t}
+
+
+${goto 1500}Kernel:	${kernel}
+${goto 1500}Uptime:	${uptime}
+${goto 1500}Packages:	${execi 300 pacman -Q | wc -l}
+
+
+${goto 1500}Battery:	${battery_time}
+${goto 1500}${voffset 2}${battery_bar 13,210} ${battery_percent}%
+
+]]
+
