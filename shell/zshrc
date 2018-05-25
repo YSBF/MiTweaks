@@ -10,6 +10,7 @@ autoload -Uz compinit
 compinit
 setopt COMPLETE_ALIASES
 setopt PROMPT_SUBST
+setopt CORRECT
 zstyle ':completion:*' menu select
 
 #
@@ -21,6 +22,8 @@ export EDITOR="vim"
 #
 # Custom prompt (Batoshu's prompt style <3)
 #
+SPROMPT="Correct %F{red}%B%R%b%f to %F{green}%B%r%b%f? [%BY%bes/%BN%bo/%BA%bbort/%BE%bdit]"
+
 if [[ $EUID -ne 0 ]]; then
 	PS_USERNAME='%F{yellow}%n%f'
 	PS_CHAR='%F{white}$%f'
