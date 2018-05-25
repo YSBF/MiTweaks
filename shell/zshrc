@@ -9,6 +9,7 @@
 autoload -Uz compinit
 compinit
 setopt COMPLETE_ALIASES
+setopt PROMPT_SUBST
 zstyle ':completion:*' menu select
 
 #
@@ -29,10 +30,31 @@ else
 fi
 PS_HOSTNAME='%F{cyan}%m%f'
 PS_PATH='%F{white}%~%f'
+PS_GIT=''
 
-PROMPT="%B$PS_USERNAME@$PS_HOSTNAME:$PS_PATH%b
-$PS_CHAR "
-RPROMPT="%(?..%F{red}%B-%?-%b%f)"
+function precmd() {
+	PS_GIT=''
+	if [[ `git rev-parse --is-inside-work-tree 2>/dev/null` == "true" ]]; then
+		local BRANCH=$(git rev-parse --abbrev-ref HEAD)
+		local CHANGES=$(git diff --name-only | wc -l)
+		local UNCOMMITED=$(git status --porcelain | egrep -v '^\?\? ' | wc -l) 
+
+		PS_GIT="%F{white}$BRANCH%f"
+		if [[ CHANGES -eq 0 ]]; then
+			PS_GIT="$PS_GIT%F{green}%B✓%b%f"
+		else
+			PS_GIT="$PS_GIT%F{red}%B✗%b%f"
+		fi
+
+		if [[ UNCOMMITED -gt 0 ]]; then
+			PS_GIT="$PS_GIT %F{magenta}%B•$UNCOMMITED%b%f"
+		fi
+	fi
+}
+
+PROMPT='%B[$PS_USERNAME@$PS_HOSTNAME] $PS_PATH%b $PS_GIT
+$PS_CHAR '
+RPROMPT='%(?..%F{red}%B-%?-%b%f)'
 
 #
 # Better-looking "command not found" error
