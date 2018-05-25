@@ -1,7 +1,6 @@
 #!/bin/sh
 #
 # File:		wacom-area
-# Version:	1.1.0
 # Author:	Bartosz "Batoshu" Staniek <batoshu@pm.me>
 #
 

@@ -1,7 +1,6 @@
 #!/bin/sh
 #
 # File:		install-windows-fonts.sh
-# Version:	1.0.0
 # Author:	Bartosz "Batoshu" Staniek <batoshu@pm.me>
 #
 

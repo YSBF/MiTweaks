@@ -1,4 +1,4 @@
-# File: .conkyrc | Version: 1.0.0 | Author: Bartosz "Batoshu" Staniek <batoshu@pm.me> #
+# File: .conkyrc | Author: Bartosz "Batoshu" Staniek <batoshu@pm.me> #
 conky.config = {
 	use_xft = true,
 	update_interval = 1,

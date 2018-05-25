@@ -1,6 +1,5 @@
 #
 # File:		power-tweaks-install.sh	
-# Version:	1.0.0
 # Author:	Bartosz "Batoshu" Staniek <batoshu@pm.me>
 #
 
