@@ -8,15 +8,15 @@ Hostname: agartha
 OS: Arch Linux
 Kernel: Always latest
 Shell: ZSH
-DE: MATE
-WM: Metacity (Marco)
-GTK Theme: Paper
+DE: Deepin Beta
+WM: Deepin WM
+GTK Theme: Deepin
 Icon Theme: Paper
 
 MOBO: Timi TM1701
 BIOS: XMAKB5R0P0502
 CPU: Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz
-GPU: NVIDIA GeForce MX150
+GPU: Intel(R) UHD GRaphics 620 + NVIDIA GeForce MX150
 RAM: 2x8GB 2400MHz 
 SSD: 256 GB NVMe SSD Controller SM961/PM961
 Battery: 60Wh
