@@ -4,18 +4,21 @@
 # Author:	Bartosz "Batoshu" Staniek <batoshu@pm.me>
 #
 
+# Disable VSync
 export vblank_mode=0
+# Change WINE Architecture
 export WINEARCH=win32
+# Wine prefix
 export WINEPREFIX=$HOME/Wine/osu
 
+# osu! directory
 osu_directory="$WINEPREFIX/drive_c/users/$USER/Local Settings/Application Data/osu!"
-use_optirun=false
-run_command=wine "$osu_directory/osu!.exe" "$@"
+# Command to run before osu! starts
+run_before_osu="$HOME/MiTweaks/wacom/wacom-area.sh osu"
+# Command to run after osu! exists
+run_after_osu="$HOME/MiTweaks/wacom/wacom-area.sh full"
 
-if [[ use_optirun -eq true ]]; then
-	echo "Running osu! with optirun"
-	command optirun $run_command
-else
-	echo "Running osu!"
-	command $run_command
-fi
+# And finally, start osu! :D
+command $run_before_osu
+command wine "$osu_directory/osu!.exe" "$@"
+command $run_after_osu
